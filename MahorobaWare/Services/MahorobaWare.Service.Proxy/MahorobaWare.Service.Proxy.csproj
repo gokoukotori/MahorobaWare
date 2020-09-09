@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Titanium.Web.Proxy" Version="3.1.1315-beta" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MahorobaWare.Service.Proxy.Interface\MahorobaWare.Service.Proxy.Interface.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,65 @@
+﻿<UserControl
+	x:Class="MahorobaWare.Modules.StateView.Views.ServerStatus"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+	xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+	xmlns:prism="http://prismlibrary.com/"
+	prism:ViewModelLocator.AutoWireViewModel="True">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+				<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<WrapPanel Grid.Row="0">
+			<TextBlock Margin="5">
+				<Run Text="10秒ごとに更新" />
+				<LineBreak />
+				<Run Text="全サバ接続数:" />
+				<Run Text="{Binding AllServerConnections.Value}" />
+			</TextBlock>
+		</WrapPanel>
+		<WrapPanel
+			Grid.Row="1"
+			Margin="0,0,8,8"
+			TextBlock.Foreground="{DynamicResource MaterialDesignBody}">
+			<ItemsControl ItemsSource="{Binding Status}">
+				<ItemsControl.Template>
+					<ControlTemplate TargetType="ItemsControl">
+						<WrapPanel
+							Margin="10"
+							IsItemsHost="True"
+							Orientation="Horizontal" />
+						<!--<StackPanel Margin="10" IsItemsHost="True" Orientation="Horizontal" />-->
+					</ControlTemplate>
+				</ItemsControl.Template>
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<materialDesign:Card Margin="1" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+							<TextBlock Margin="5">
+								<Run Text="{Binding Name}" />
+								<LineBreak />
+								<Run Text="最大接続可能数:" />
+								<Run Text="{Binding MaxOnlineNums}" />
+								<LineBreak />
+								<Run Text="接続数:" />
+								<Run Text="{Binding OnlineNums}" />
+							</TextBlock>
+						</materialDesign:Card>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</WrapPanel>
+	</Grid>
+</UserControl>

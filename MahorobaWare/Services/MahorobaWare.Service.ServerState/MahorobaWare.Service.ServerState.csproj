@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MahorobaWare.Service.ServerState.Interface\MahorobaWare.Service.ServerState.Interface.csproj" />
+  </ItemGroup>
+
+</Project>
