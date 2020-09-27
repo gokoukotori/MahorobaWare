@@ -32,6 +32,9 @@ namespace MahorobaWare.Modules.Downloader.ViewModels
 			_PictureDownloader = pictureDownloader;
 			TargetDownloads = new ReactiveCollection<TargetDownload>();
 			TargetDownloads.AddOnScheduler(new TargetDownload(false, "スタンプ", "Stampsフォルダに保存されます。", Target.Stamp));
+			TargetDownloads.AddOnScheduler(new TargetDownload(false, "立ち絵", "StandCharactersフォルダに保存されます。", Target.StandCharacter));
+			TargetDownloads.AddOnScheduler(new TargetDownload(false, "SD立ち絵", "SdStandCharactersフォルダに保存されます。", Target.SdStandCharacter));
+			TargetDownloads.AddOnScheduler(new TargetDownload(false, "エロ絵", "CharacterSexiesのキャラ名_キャラクターIDフォルダに保存されます。", Target.CharacterSexies));
 			DownloadCommand = new AsyncReactiveCommand<string>();
 			DownloadCommand.Subscribe(Download);
 			TargetDirectory = new ReactiveProperty<string>
@@ -59,6 +62,17 @@ namespace MahorobaWare.Modules.Downloader.ViewModels
 						case Target.Stamp:
 							await _PictureDownloader.DownloadStampsAsync(folderPath);
 							break;
+						case Target.StandCharacter:
+							await _PictureDownloader.DownloadStandCharactersAsync(folderPath);
+							await _PictureDownloader.DownloadStandHerosAsync(folderPath);
+							break;
+						case Target.SdStandCharacter:
+							await _PictureDownloader.DownloadSdStandCharactersAsync(folderPath);
+							await _PictureDownloader.DownloadSdStandHerosAsync(folderPath);
+							break;
+						case Target.CharacterSexies:
+							await _PictureDownloader.DownloadCharacterSexiesAsync(folderPath);
+							break;
 						default:
 							break;
 					}
@@ -68,13 +82,35 @@ namespace MahorobaWare.Modules.Downloader.ViewModels
 			IsDownloading.Value = false;
 		}
 
-		private void FileHandler(CfgChat sender, string filePath)
+		private void FileHandler(object sender, string filePath)
 		{
-			Log.Value += filePath + "\n";
+			if (sender is CfgChat)
+			{
+				Log.Value += filePath + "\n";
+			}
+			if (sender is CfgPartner)
+			{
+				Log.Value += filePath + "\n";
+			}
+			if (sender is CfgProfession)
+			{
+				Log.Value += filePath + "\n";
+			}
 		}
-		private void FailureCreatedFile(CfgChat sender, Exception ex)
+		private void FailureCreatedFile(object sender, Exception ex)
 		{
-			Log.Value += ex.Message + "\n";
+			if (sender is CfgChat)
+			{
+				Log.Value += (sender as CfgChat)?.PartnerId + "：" + ex.Message + "\n";
+			}
+			if (sender is CfgPartner)
+			{
+				Log.Value += (sender as CfgPartner)?.Picindex + "：" + ex.Message + "\n";
+			}
+			if (sender is CfgProfession)
+			{
+				Log.Value += (sender as CfgProfession)?.Pid + "：" + ex.Message + "\n";
+			}
 		}
 	}
 
@@ -97,5 +133,10 @@ namespace MahorobaWare.Modules.Downloader.ViewModels
 	public enum Target
 	{
 		Stamp = 0,
+		StandCharacter,
+		SdStandCharacter,
+		CharacterIcon_1,
+		CharacterIcon_2,
+		CharacterSexies,
 	}
 }

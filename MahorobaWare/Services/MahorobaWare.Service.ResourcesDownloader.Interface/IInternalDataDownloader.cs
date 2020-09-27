@@ -12,5 +12,9 @@ namespace MahorobaWare.Service.ResourcesDownloader.Interface
 		public CfgChat[] CfgChat();
 		public Task<CfgChat[]> CfgChatAsync();
 		public Task<dynamic> CfgDataAsync(int dataNum);
+		public Task<CfgPartner[]> CfgPartnersAsync();
+		public CfgPartner[] CfgPartners();
+		public CfgProfession[] CfgProfessions();
+		public Task<CfgProfession[]> CfgProfessionsAsync();
 	}
 }

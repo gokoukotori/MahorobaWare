@@ -4,6 +4,7 @@ using MahorobaWare.Service.ResourcesDownloader.Interface;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -83,15 +84,173 @@ namespace MahorobaWare.Service.ResourcesDownloader
 			}
 		}
 
-		public StampPicture[] DownloadStampBinaries()
+		public async Task DownloadStandCharactersAsync(string saveDirectory)
 		{
-			//DownloadStamps(_InternalDataDownloader.CfgChat());
-			return null;
+			await DownloadStandCharactersAsync(saveDirectory, await _InternalDataDownloader.CfgPartnersAsync()).ConfigureAwait(false);
 		}
-		public StampPicture[] DownloadStampBinaries(params CfgChat[] cfgChats)
+		public async Task DownloadStandCharactersAsync(string saveDirectory, params CfgPartner[] cfgPartners)
 		{
-			_ResolvePicIndexToUrl.GetStamps(cfgChats);
-			return null;
+			foreach (var item in cfgPartners)
+			{
+				var uri = _ResolvePicIndexToUrl.GetStandCharacters(item);
+				if (uri == null) continue;
+				var fileName = Path.Combine(saveDirectory, "StandCharacters", item.Name + "_" + item.Picindex + ".png");
+				try
+				{
+					var data = await _WebClient.DownloadDataTaskAsync(uri[0]);
+
+					var dir = Path.GetDirectoryName(fileName);
+					if (!Directory.Exists(dir))
+					{
+						Directory.CreateDirectory(dir);
+					}
+					using var fs = new FileStream(fileName, FileMode.Create);
+					using var sw = new BinaryWriter(fs);
+					sw.Write(data);
+				}
+				catch (Exception ex)
+				{
+					FailureCreatedFileEvent(item, ex);
+					continue;
+				}
+				CreatedFileEvent(item, fileName);
+			}
+		}
+
+		public async Task DownloadSdStandCharactersAsync(string saveDirectory)
+		{
+			await DownloadSdStandCharactersAsync(saveDirectory, await _InternalDataDownloader.CfgPartnersAsync()).ConfigureAwait(false);
+		}
+		public async Task DownloadSdStandCharactersAsync(string saveDirectory, params CfgPartner[] cfgPartners)
+		{
+			foreach (var item in cfgPartners)
+			{
+				var uri = _ResolvePicIndexToUrl.GetSdStandCharacters(item);
+				if (uri == null) continue;
+				var fileName = Path.Combine(saveDirectory, "SdStandCharacters", item.Name + "_" + item.Picindex + ".png");
+				try
+				{
+					var data = await _WebClient.DownloadDataTaskAsync(uri[0]);
+
+					var dir = Path.GetDirectoryName(fileName);
+					if (!Directory.Exists(dir))
+					{
+						Directory.CreateDirectory(dir);
+					}
+					using var fs = new FileStream(fileName, FileMode.Create);
+					using var sw = new BinaryWriter(fs);
+					sw.Write(data);
+				}
+				catch (Exception ex)
+				{
+					FailureCreatedFileEvent(item, ex);
+					continue;
+				}
+				CreatedFileEvent(item, fileName);
+			}
+		}
+		public async Task DownloadStandHerosAsync(string saveDirectory)
+		{
+			await DownloadStandHerosAsync(saveDirectory, await _InternalDataDownloader.CfgProfessionsAsync()).ConfigureAwait(false);
+		}
+		public async Task DownloadStandHerosAsync(string saveDirectory, params CfgProfession[] cfgPartners)
+		{
+			foreach (var item in cfgPartners)
+			{
+				var uri = _ResolvePicIndexToUrl.GetStandHeros(item);
+				if (uri == null) continue;
+				var fileName = Path.Combine(saveDirectory, "StandCharacters", item.Name + "_" + item.Pid + ".png");
+				try
+				{
+					var data = await _WebClient.DownloadDataTaskAsync(uri[0]);
+
+					var dir = Path.GetDirectoryName(fileName);
+					if (!Directory.Exists(dir))
+					{
+						Directory.CreateDirectory(dir);
+					}
+					using var fs = new FileStream(fileName, FileMode.Create);
+					using var sw = new BinaryWriter(fs);
+					sw.Write(data);
+				}
+				catch (Exception ex)
+				{
+					FailureCreatedFileEvent(item, ex);
+					continue;
+				}
+				CreatedFileEvent(item, fileName);
+			}
+		}
+
+		public async Task DownloadSdStandHerosAsync(string saveDirectory)
+		{
+			await DownloadSdStandHerosAsync(saveDirectory, await _InternalDataDownloader.CfgProfessionsAsync()).ConfigureAwait(false);
+		}
+		public async Task DownloadSdStandHerosAsync(string saveDirectory, params CfgProfession[] cfgPartners)
+		{
+			foreach (var item in cfgPartners)
+			{
+				var uri = _ResolvePicIndexToUrl.GetSdStandHeros(item);
+				if (uri == null) continue;
+				var fileName = Path.Combine(saveDirectory, "SdStandCharacters", item.Name + "_" + item.Pid + ".png");
+				try
+				{
+					var data = await _WebClient.DownloadDataTaskAsync(uri[0]);
+
+					var dir = Path.GetDirectoryName(fileName);
+					if (!Directory.Exists(dir))
+					{
+						Directory.CreateDirectory(dir);
+					}
+					using var fs = new FileStream(fileName, FileMode.Create);
+					using var sw = new BinaryWriter(fs);
+					sw.Write(data);
+				}
+				catch (Exception ex)
+				{
+					FailureCreatedFileEvent(item, ex);
+					continue;
+				}
+				CreatedFileEvent(item, fileName);
+			}
+		}
+
+		public async Task DownloadCharacterSexiesAsync(string saveDirectory)
+		{
+			await DownloadCharacterSexiesAsync(saveDirectory, await _InternalDataDownloader.CfgPartnersAsync()).ConfigureAwait(false);
+		}
+		public async Task DownloadCharacterSexiesAsync(string saveDirectory, params CfgPartner[] cfgPartners)
+		{
+			foreach (var item in cfgPartners)
+			{
+				var uri = _ResolvePicIndexToUrl.GetCharacterSexies(item).First();
+				if (uri == null) continue;
+
+				for (int i = 0; i < uri.Length; i++)
+				{
+					var fileName = Path.Combine(saveDirectory, "CharacterSexies", item.Name + "_" + item.Picindex, item.Name + "_" + i + ".png");
+					try
+					{
+						var data = await _WebClient.DownloadDataTaskAsync(uri[i]);
+
+						var dir = Path.GetDirectoryName(fileName);
+						if (!Directory.Exists(dir))
+						{
+							Directory.CreateDirectory(dir);
+						}
+						using var fs = new FileStream(fileName, FileMode.Create);
+						using var sw = new BinaryWriter(fs);
+						sw.Write(data);
+					}
+					catch (Exception ex)
+					{
+						FailureCreatedFileEvent(item, ex);
+						continue;
+					}
+					CreatedFileEvent(item, fileName);
+				}
+
+			}
 		}
 	}
 }

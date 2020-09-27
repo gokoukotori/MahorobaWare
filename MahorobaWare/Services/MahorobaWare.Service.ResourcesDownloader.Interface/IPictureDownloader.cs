@@ -13,9 +13,20 @@ namespace MahorobaWare.Service.ResourcesDownloader.Interface
 		public void DownloadStamps(string saveDirectory, params CfgChat[] cfgChats);
 		public Task DownloadStampsAsync(string saveDirectory);
 		public Task DownloadStampsAsync(string saveDirectory, params CfgChat[] cfgChats);
+		public Task DownloadStandCharactersAsync(string saveDirectory);
+		public Task DownloadStandCharactersAsync(string saveDirectory, params CfgPartner[] cfgPartners);
+		public Task DownloadSdStandCharactersAsync(string saveDirectory);
+		public Task DownloadSdStandCharactersAsync(string saveDirectory, params CfgPartner[] cfgPartners);
+		public Task DownloadStandHerosAsync(string saveDirectory);
+		public Task DownloadStandHerosAsync(string saveDirectory, params CfgProfession[] cfgPartners);
+		public Task DownloadSdStandHerosAsync(string saveDirectory);
+		public Task DownloadSdStandHerosAsync(string saveDirectory, params CfgProfession[] cfgPartners);
+		public Task DownloadCharacterSexiesAsync(string saveDirectory);
+		public Task DownloadCharacterSexiesAsync(string saveDirectory, params CfgPartner[] cfgPartners);
+
 		public event FileHandler CreatedFileEvent;
 		public event FailureCreatedFile FailureCreatedFileEvent;
-		public delegate void FileHandler(CfgChat sender, string filePath);
-		public delegate void FailureCreatedFile(CfgChat sender, Exception ex);
+		public delegate void FileHandler(object sender, string filePath);
+		public delegate void FailureCreatedFile(object sender, Exception ex);
 	}
 }
