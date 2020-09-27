@@ -17,7 +17,7 @@ namespace MahorobaWare.ViewModels
 
 		public MainWindowViewModel(IRegionManager regionManager)
 		{
-			Title = new ReactivePropertySlim<string>("Prism Application").AddTo(Disposable);
+			Title = new ReactivePropertySlim<string>("Mahoroba").AddTo(Disposable);
 			MainRegion = new ReactivePropertySlim<string>(RegionNames.MainRegion).AddTo(Disposable);
 
 			_regionManager = regionManager;

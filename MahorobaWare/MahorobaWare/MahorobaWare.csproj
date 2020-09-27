@@ -8,18 +8,21 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" Version="2.2.0" />
-    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.4.0" />
+    <PackageReference Include="MahApps.Metro.IconPacks" Version="4.5.0" />
     <PackageReference Include="MahApps.Metro.SimpleChildWindow" Version="2.0.0-alpha0043" />
-    <PackageReference Include="MaterialDesignColors" Version="1.2.7-ci1917" />
-    <PackageReference Include="MaterialDesignThemes" Version="3.2.0-ci1917" />
-    <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.1.5-ci1917" />
+    <PackageReference Include="MaterialDesignColors" Version="1.2.8-ci1990" />
+    <PackageReference Include="MaterialDesignThemes" Version="3.2.1-ci1990" />
+    <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.1.6-ci1990" />
+    <PackageReference Include="Prism.Container.Extensions" Version="7.2.0.1054" />
     <PackageReference Include="Prism.DryIoc" Version="7.2.0.1422" />
-    <PackageReference Include="ReactiveProperty.WPF" Version="7.2.0" />
+    <PackageReference Include="Prism.DryIoc.Extensions" Version="7.2.0.1054" />
+    <PackageReference Include="ReactiveProperty.WPF" Version="7.4.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MahorobaWare.Core\MahorobaWare.Core.csproj" />
     <ProjectReference Include="..\Modules\MahorobaWare.Modules.Base\MahorobaWare.Modules.Base.csproj" />
     <ProjectReference Include="..\Modules\MahorobaWare.Modules.Chat\MahorobaWare.Modules.Chat.csproj" />
+    <ProjectReference Include="..\Modules\MahorobaWare.Modules.Downloader\MahorobaWare.Modules.Downloader.csproj" />
     <ProjectReference Include="..\Modules\MahorobaWare.Modules.StateView\MahorobaWare.Modules.StateView.csproj" />
     <ProjectReference Include="..\Services\MahorobaWare.Service.Proxy.Interface\MahorobaWare.Service.Proxy.Interface.csproj" />
     <ProjectReference Include="..\Services\MahorobaWare.Service.Proxy\MahorobaWare.Service.Proxy.csproj" />

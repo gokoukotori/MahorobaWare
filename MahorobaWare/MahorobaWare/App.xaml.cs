@@ -17,6 +17,12 @@ using MahorobaWare.Service.WebSoccket.Interface;
 using MahorobaWare.Service.WebSoccket;
 using MahorobaWare.Service.ResourcesDownloader.Interface;
 using MahorobaWare.Service.ResourcesDownloader;
+using MahorobaWare.Modules.Downloader;
+using Microsoft.Extensions.DependencyInjection;
+using Prism.DryIoc;
+using DryIoc;
+using Prism.Container.Extensions;
+using Prism.DryIoc.Extensions;
 
 namespace MahorobaWare
 {
@@ -32,26 +38,31 @@ namespace MahorobaWare
 
 		protected override void RegisterTypes(IContainerRegistry containerRegistry)
 		{
+
 			containerRegistry.RegisterSingleton<IServerState, ServerState>();
 			containerRegistry.Register<IProxyServerService, ProxyServerService>();
 			containerRegistry.RegisterSingleton<IChatServerService, ChatServerService>();
 			containerRegistry.RegisterSingleton<IResolvePicIndexToUrl, ResolvePicIndexToUrl>();
+			containerRegistry.Register<IInternalDataDownloader, InternalDataDownloader>();
+			containerRegistry.Register<IPictureDownloader, PictureDownloader>();
 
 			var list = new List<string>
 			{
 				Path.Combine(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName, "MahorobaWare.Modules.Base.dll"),
 				Path.Combine(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName, "MahorobaWare.Modules.StateView.dll"),
-				Path.Combine(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName, "MahorobaWare.Modules.Chat.dll")
+				Path.Combine(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName, "MahorobaWare.Modules.Chat.dll"),
+				Path.Combine(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName, "MahorobaWare.Modules.Downloader.dll")
 			};
 			var plugins = ModuleLoader.LoadVisualPlugins(list.ToArray());
 			containerRegistry.RegisterInstance(plugins);
 		}
-
 		protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
 		{
 			moduleCatalog.AddModule<BaseModule>();
 			moduleCatalog.AddModule<StateViewModule>();
 			moduleCatalog.AddModule<ChatModule>();
+			moduleCatalog.AddModule<DownloaderModule>();
+
 			var list = new List<string>
 			{
 				//Path.Combine(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName, "MahorobaWare.Modules.StateView.dll"),

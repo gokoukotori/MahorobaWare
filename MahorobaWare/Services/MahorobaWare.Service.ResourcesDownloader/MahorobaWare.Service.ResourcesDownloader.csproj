@@ -5,7 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Iconic.Zlib.Netstandard" Version="1.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MahorobaWare.Core\MahorobaWare.Core.csproj" />
     <ProjectReference Include="..\MahorobaWare.Service.ResourcesDownloader.Interface\MahorobaWare.Service.ResourcesDownloader.Interface.csproj" />
+    <ProjectReference Include="..\MahorobaWare.Service.ServerState.Interface\MahorobaWare.Service.ServerState.Interface.csproj" />
   </ItemGroup>
 
 </Project>

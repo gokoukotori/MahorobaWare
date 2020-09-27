@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MahorobaWare.Core.Plugin.Interface
 {
-	public interface IVisualPlugins : IEnumerable<IVisualPlugin>, IList<IVisualPlugin>
+	public interface IVisualPlugins : IEnumerable<IVisualPlugin>, IList<IVisualPlugin>, IReadOnlyList<IVisualPlugin>
 	{
 	}
 }

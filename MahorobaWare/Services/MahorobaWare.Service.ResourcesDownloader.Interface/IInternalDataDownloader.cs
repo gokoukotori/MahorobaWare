@@ -1,16 +1,16 @@
 ﻿using MahorobaWare.Core.Mahoroba.Entities.Cfg;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MahorobaWare.Service.ResourcesDownloader.Interface
 {
-	public interface IResolvePicIndexToUrl
+	public interface IInternalDataDownloader
 	{
-		public Uri GetCharacterHeadIcon(string PicIndex);
-		public Uri GetCfgDataThe(int num);
-		public Uri[] GetStamps(params CfgChat[] chat);
+		public dynamic CfgData(int dataNum);
+		public CfgChat[] CfgChat();
+		public Task<CfgChat[]> CfgChatAsync();
+		public Task<dynamic> CfgDataAsync(int dataNum);
 	}
 }
