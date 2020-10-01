@@ -13,9 +13,9 @@ namespace MahorobaWare.Service.ResourcesDownloader
 {
 	public class InternalDataDownloader : IInternalDataDownloader
 	{
-		private WebClient _WebClient = new WebClient();
-		private IResolvePicIndexToUrl _ResolvePicIndexToUrl;
-		private Dictionary<int, dynamic> _Cache = new Dictionary<int, dynamic>();
+		private readonly WebClient _WebClient = new WebClient();
+		private readonly IResolvePicIndexToUrl _ResolvePicIndexToUrl;
+		private readonly Dictionary<int, dynamic> _Cache = new Dictionary<int, dynamic>();
 		public InternalDataDownloader(IResolvePicIndexToUrl resolvePicIndexToUrl)
 		{
 			_ResolvePicIndexToUrl = resolvePicIndexToUrl;

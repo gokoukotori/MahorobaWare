@@ -1,0 +1,88 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+	<UseWPF>true</UseWPF>
+	<TargetFramework>netcoreapp3.1</TargetFramework>
+	<Platforms>AnyCPU;x64;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<ProjectReference Include="..\MahorobaWare\MahorobaWare.Core\MahorobaWare.Core.csproj" />
+	<ProjectReference Include="..\MahorobaWare\MahorobaWare\MahorobaWare.csproj" />
+	<ProjectReference Include="..\MahorobaWare\Modules\MahorobaWare.Modules.Base\MahorobaWare.Modules.Base.csproj" />
+	<ProjectReference Include="..\MahorobaWare\Modules\MahorobaWare.Modules.Chat\MahorobaWare.Modules.Chat.csproj" />
+	<ProjectReference Include="..\MahorobaWare\Modules\MahorobaWare.Modules.Downloader\MahorobaWare.Modules.Downloader.csproj" />
+	<ProjectReference Include="..\MahorobaWare\Modules\MahorobaWare.Modules.StateView\MahorobaWare.Modules.StateView.csproj" />
+	<ProjectReference Include="..\MahorobaWare\Services\MahorobaWare.Service.Proxy.Interface\MahorobaWare.Service.Proxy.Interface.csproj" />
+	<ProjectReference Include="..\MahorobaWare\Services\MahorobaWare.Service.Proxy\MahorobaWare.Service.Proxy.csproj" />
+	<ProjectReference Include="..\MahorobaWare\Services\MahorobaWare.Service.ResourcesDownloader.Interface\MahorobaWare.Service.ResourcesDownloader.Interface.csproj" />
+	<ProjectReference Include="..\MahorobaWare\Services\MahorobaWare.Service.ResourcesDownloader\MahorobaWare.Service.ResourcesDownloader.csproj" />
+	<ProjectReference Include="..\MahorobaWare\Services\MahorobaWare.Service.ServerState.Interface\MahorobaWare.Service.ServerState.Interface.csproj" />
+	<ProjectReference Include="..\MahorobaWare\Services\MahorobaWare.Service.ServerState\MahorobaWare.Service.ServerState.csproj" />
+	<ProjectReference Include="..\MahorobaWare\Services\MahorobaWare.Service.WebSoccket.Interface\MahorobaWare.Service.WebSoccket.Interface.csproj" />
+	<ProjectReference Include="..\MahorobaWare\Services\MahorobaWare.Service.WebSoccket\MahorobaWare.Service.WebSoccket.csproj" />
+  </ItemGroup>
+	<Target Name="Mylog" AfterTargets="Build">
+		<Message Importance="high" Text="OutDir: $(OutDir)" />
+		<Message Importance="high" Text="OutLibDir: $(OutModuleDir)" />
+		<Message Importance="high" Text="OutLibDir: $(OutServiceDir)" />
+
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Modules.Base.dll" DestinationFolder="$(OutModuleDir)" Condition="Exists('$(OutDir)\MahorobaWare.Modules.Base.dll')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Modules.Chat.dll" DestinationFolder="$(OutModuleDir)" Condition="Exists('$(OutDir)\MahorobaWare.Modules.Chat.dll')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Modules.Downloader.dll" DestinationFolder="$(OutModuleDir)" Condition="Exists('$(OutDir)\MahorobaWare.Modules.Downloader.dll')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Modules.StateView.dll" DestinationFolder="$(OutModuleDir)" Condition="Exists('$(OutDir)\MahorobaWare.Modules.StateView.dll')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.Proxy.Interface.dll" DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.Proxy.Interface.dll')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.Proxy.dll" DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.Proxy.dll')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.ResourcesDownloader.Interface.dll" DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.ResourcesDownloader.Interface.dll')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.ResourcesDownloader.dll" DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.ResourcesDownloader.dll')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.ServerState.Interface.dll" DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.ServerState.Interface.dll')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.ServerState.dll" DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.ServerState.dll')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.WebSoccket.Interface.dll" DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.WebSoccket.Interface.dll')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.WebSoccket.dll" DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.WebSoccket.dll')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+
+
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Modules.Base.pdb" DestinationFolder="$(OutModuleDir)" Condition="Exists('$(OutDir)\MahorobaWare.Modules.Base.pdb')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Modules.Chat.pdb" DestinationFolder="$(OutModuleDir)" Condition="Exists('$(OutDir)\MahorobaWare.Modules.Chat.pdb')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Modules.Downloader.pdb" DestinationFolder="$(OutModuleDir)" Condition="Exists('$(OutDir)\MahorobaWare.Modules.Downloader.pdb')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Modules.StateView.pdb" DestinationFolder="$(OutModuleDir)" Condition="Exists('$(OutDir)\MahorobaWare.Modules.StateView.pdb')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.Proxy.Interface.pdb" DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.Proxy.Interface.pdb')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.Proxy.pdb" DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.Proxy.pdb')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.ResourcesDownloader.Interface.pdb" DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.ResourcesDownloader.Interface.pdb')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.ResourcesDownloader.pdb" DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.ResourcesDownloader.pdb')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.ServerState.Interface.pdb" DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.ServerState.Interface.pdb')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.ServerState.pdb" DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.ServerState.pdb')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.WebSoccket.Interface.pdb" DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.WebSoccket.Interface.pdb')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.WebSoccket.pdb" DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.WebSoccket.pdb')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+
+		<!--<Move SourceFiles="$(OutLibDir)\MahorobaWare.Core.dll" DestinationFolder="$(OutDir)" Condition="Exists('$(OutLibDir)\MahorobaWare.Core.dll')" />-->
+
+	</Target>
+	<Target Name="Mylog2" AfterTargets="Build">
+		<Message Importance="high" Text="OutLibDir: $(OutLibDir)" />
+
+		<ItemGroup>
+			<ItemLib Include="$(OutDir)\*.dll" />
+			<ItemLibDebug Include="$(OutDir)\*.pdb" />
+		</ItemGroup>
+		<Move SourceFiles="@(ItemLib)" DestinationFolder="$(OutLibDir)" />
+		<Move SourceFiles="$(OutLibDir)\MahorobaWare.Core.dll" DestinationFolder="$(OutDir)" Condition="Exists('$(OutLibDir)\MahorobaWare.Core.dll')" OverwriteReadOnlyFiles="true" ContinueOnError="true" />
+		<Move SourceFiles="$(OutLibDir)\MahorobaWare.dll" DestinationFolder="$(OutDir)" Condition="Exists('$(OutLibDir)\MahorobaWare.dll')" OverwriteReadOnlyFiles="true" ContinueOnError="true" />
+
+
+		<Move SourceFiles="@(ItemLibDebug)" DestinationFolder="$(OutLibDir)" />
+		<Move SourceFiles="$(OutLibDir)\MahorobaWare.Core.pdb" DestinationFolder="$(OutDir)" Condition="Exists('$(OutLibDir)\MahorobaWare.Core.pdb')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+		<Move SourceFiles="$(OutLibDir)\MahorobaWare.pdb" DestinationFolder="$(OutDir)" Condition="Exists('$(OutLibDir)\MahorobaWare.pdb')" OverwriteReadOnlyFiles="true" ContinueOnError="true"  />
+
+	</Target>
+	<Target Name="Mylog3" AfterTargets="_CheckForCompileOutputs">
+		<Message Importance="high" Text="OutLibDir: $(OutLibDir)" />
+
+		<ItemGroup>
+			<ItemJson Include="$(OutDir)\*.json" />
+		</ItemGroup>
+		<Delete Files="@(ItemJson)" />
+		<Delete Files="$(OutDir)\System.Reactive.xml" />
+
+	</Target>
+
+</Project>

@@ -1,0 +1,72 @@
+<Project>
+	<PropertyGroup>
+		<LangVersion>latest</LangVersion>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\MahorobaWare</OutDir>
+		<OutLibDir>$(OutDir)\libs</OutLibDir>
+		<OutModuleDir>$(OutDir)\modules</OutModuleDir>
+		<OutServiceDir>$(OutDir)\service</OutServiceDir>
+	</PropertyGroup>
+	<ItemDefinitionGroup>
+		<PackageReference GeneratePathProperty="true" />
+	</ItemDefinitionGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+		<DebugType>none</DebugType>
+		<DebugSymbols>false</DebugSymbols>
+	</PropertyGroup>
+	<!--
+	<Target Name="Mylog" AfterTargets="Build">
+		<Message Importance="high" Text="OutDir: $(OutDir)"/>
+		<Message Importance="high" Text="OutLibDir: $(OutLibDir)"/>
+		<Message Importance="high" Text="OutLibDir: $(OutModuleDir)"/>
+		<Message Importance="high" Text="OutLibDir: $(OutServiceDir)"/>
+
+		<ItemGroup>
+			<ItemLib Include="$(OutDir)\*.dll;$(OutDir)\*.pdb" />
+		</ItemGroup>
+
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Modules.Base.dll"  DestinationFolder="$(OutModuleDir)" Condition="Exists('$(OutDir)\MahorobaWare.Modules.Base.dll')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Modules.Chat.dll"  DestinationFolder="$(OutModuleDir)" Condition="Exists('$(OutDir)\MahorobaWare.Modules.Chat.dll')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Modules.Downloader.dll"  DestinationFolder="$(OutModuleDir)" Condition="Exists('$(OutDir)\MahorobaWare.Modules.Downloader.dll')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Modules.StateView.dll"  DestinationFolder="$(OutModuleDir)" Condition="Exists('$(OutDir)\MahorobaWare.Modules.StateView.dll')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.Proxy.Interface.dll"  DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.Proxy.Interface.dll')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.Proxy.dll"  DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.Proxy.dll')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.ResourcesDownloader.Interface.dll"  DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.ResourcesDownloader.Interface.dll')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.ResourcesDownloader.dll"  DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.ResourcesDownloader.dll')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.ServerState.Interface.dll"  DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.ServerState.Interface.dll')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.ServerState.dll"  DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.ServerState.dll')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.WebSoccket.Interface.dll"  DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.WebSoccket.Interface.dll')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.WebSoccket.dll"  DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.WebSoccket.dll')" />
+
+		<Move SourceFiles="@(ItemLib)" DestinationFolder="$(OutLibDir)" />
+
+		<Move SourceFiles="$(OutLibDir)\MahorobaWare.Core.dll"  DestinationFolder="$(OutDir)" Condition="Exists('$(OutLibDir)\MahorobaWare.Core.dll')" />
+
+	</Target>
+
+	<Target Name="Mylog2" AfterTargets="Build" Condition="'$(Configuration)'=='Debug'">
+		<Message Importance="high" Text="DebugCoreCompile"/>
+
+
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Modules.Base.pdb"  DestinationFolder="$(OutModuleDir)" Condition="Exists('$(OutDir)\MahorobaWare.Modules.Base.pdb')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Modules.Chat.pdb"  DestinationFolder="$(OutModuleDir)" Condition="Exists('$(OutDir)\MahorobaWare.Modules.Chat.pdb')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Modules.Downloader.pdb"  DestinationFolder="$(OutModuleDir)" Condition="Exists('$(OutDir)\MahorobaWare.Modules.Downloader.pdb')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Modules.StateView.pdb"  DestinationFolder="$(OutModuleDir)" Condition="Exists('$(OutDir)\MahorobaWare.Modules.StateView.pdb')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.Proxy.Interface.pdb"  DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.Proxy.Interface.pdb')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.Proxy.pdb"  DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.Proxy.pdb')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.ResourcesDownloader.Interface.pdb"  DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.ResourcesDownloader.Interface.pdb')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.ResourcesDownloader.pdb"  DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.ResourcesDownloader.pdb')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.ServerState.Interface.pdb"  DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.ServerState.Interface.pdb')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.ServerState.pdb"  DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.ServerState.pdb')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.WebSoccket.Interface.pdb"  DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.WebSoccket.Interface.pdb')" />
+		<Move SourceFiles="$(OutDir)\MahorobaWare.Service.WebSoccket.pdb"  DestinationFolder="$(OutServiceDir)" Condition="Exists('$(OutDir)\MahorobaWare.Service.WebSoccket.pdb')" />
+
+		<Move SourceFiles="$(OutLibDir)\MahorobaWare.Core.pdb" Condition="Exists('$(OutLibDir)\MahorobaWare.Core.pdb')" />
+
+		<Copy SourceFiles="@(ItemPkgMahApps_Metro)" DestinationFiles="@(ItemPkgMahApps_Metro->'$(OutDir)\libs\%(RecursiveDir)%(Filename)%(Extension)')" />
+
+	</Target>
+	-->
+</Project>
