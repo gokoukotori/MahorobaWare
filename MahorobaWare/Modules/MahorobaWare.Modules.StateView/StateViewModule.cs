@@ -1,4 +1,6 @@
-﻿using MahorobaWare.Modules.StateView.Views;
+﻿using MahorobaWare.Core.Module;
+using MahorobaWare.Modules.StateView.Views;
+using MahorobaWare.Service.ServerState.Interface;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Regions;
@@ -20,6 +22,11 @@ namespace MahorobaWare.Modules.StateView
 
 		public void RegisterTypes(IContainerRegistry containerRegistry)
 		{
+			if (!containerRegistry.IsRegistered<IServerState>())
+			{
+				containerRegistry.RegisterSingleton(typeof(IServerState), ServiceLoader.LoadService(typeof(IServerState)));
+			}
+
 			containerRegistry.RegisterForNavigation<ServerStatus>();
 		}
 	}

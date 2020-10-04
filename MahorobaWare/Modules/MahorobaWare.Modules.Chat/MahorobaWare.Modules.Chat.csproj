@@ -25,9 +25,4 @@
     <ProjectReference Include="..\..\Services\MahorobaWare.Service.ServerState.Interface\MahorobaWare.Service.ServerState.Interface.csproj" />
     <ProjectReference Include="..\..\Services\MahorobaWare.Service.WebSoccket.Interface\MahorobaWare.Service.WebSoccket.Interface.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <None Update="Views\ChatLogin.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-  </ItemGroup>
 </Project>

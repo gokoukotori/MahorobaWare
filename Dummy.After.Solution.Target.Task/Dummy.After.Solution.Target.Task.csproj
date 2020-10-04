@@ -80,7 +80,7 @@
 		<ItemGroup>
 			<ItemJson Include="$(OutDir)\*.json" />
 		</ItemGroup>
-		<Delete Files="@(ItemJson)" />
+		<!--<Delete Files="@(ItemJson)" />-->
 		<Delete Files="$(OutDir)\System.Reactive.xml" />
 
 	</Target>

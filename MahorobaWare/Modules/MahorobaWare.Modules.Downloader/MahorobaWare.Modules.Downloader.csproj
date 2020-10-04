@@ -12,5 +12,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\MahorobaWare.Core\MahorobaWare.Core.csproj" />
     <ProjectReference Include="..\..\Services\MahorobaWare.Service.ResourcesDownloader.Interface\MahorobaWare.Service.ResourcesDownloader.Interface.csproj" />
+    <ProjectReference Include="..\..\Services\MahorobaWare.Service.ServerState.Interface\MahorobaWare.Service.ServerState.Interface.csproj" />
   </ItemGroup>
 </Project>
