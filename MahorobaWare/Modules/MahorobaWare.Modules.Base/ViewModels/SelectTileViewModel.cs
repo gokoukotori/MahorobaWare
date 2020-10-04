@@ -18,7 +18,7 @@ namespace MahorobaWare.Modules.Base.ViewModels
 		{
 			ShowPluginViewCommand = new DelegateCommand<IVisualPlugin>(ExecuteShowPluginView);
 			PluginList = new ObservableCollection<IVisualPlugin>(plugins);
-			PluginList.Remove(plugins.Where(x => x.MainViewName == nameof(SelectTile)).First());
+			PluginList.Remove(plugins.First(x => x.MainViewName == nameof(SelectTile)));
 
 		}
 

@@ -28,12 +28,12 @@ namespace MahorobaWare.Modules.Downloader
 
 			if (!containerRegistry.IsRegistered<IInternalDataDownloader>())
 			{
-				containerRegistry.RegisterSingleton(typeof(IInternalDataDownloader), ServiceLoader.LoadService(typeof(IInternalDataDownloader)));
+				containerRegistry.Register(typeof(IInternalDataDownloader), ServiceLoader.LoadService(typeof(IInternalDataDownloader)));
 			}
 
 			if (!containerRegistry.IsRegistered<IPictureDownloader>())
 			{
-				containerRegistry.RegisterSingleton(typeof(IPictureDownloader), ServiceLoader.LoadService(typeof(IPictureDownloader)));
+				containerRegistry.Register(typeof(IPictureDownloader), ServiceLoader.LoadService(typeof(IPictureDownloader)));
 			}
 			containerRegistry.RegisterForNavigation<DownloaderSelect>();
 			containerRegistry.RegisterForNavigation<DownloaderOption>();

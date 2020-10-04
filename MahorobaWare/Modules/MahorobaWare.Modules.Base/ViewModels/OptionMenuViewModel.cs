@@ -27,7 +27,7 @@ namespace MahorobaWare.Modules.Base.ViewModels
 			TabItemList = new ObservableCollection<TabItem>();
 			foreach (var item in PluginList)
 			{
-				if (item.SettingViewName == "") continue;
+				if (item.SettingViewName?.Length == 0) continue;
 				TabItemList.Add(new TabItem() { Content = container.Resolve(item.SettingViewType), Header = item.Name });
 			}
 		}

@@ -36,7 +36,7 @@ namespace MahorobaWare.Modules.Chat
 
 			if (!containerRegistry.IsRegistered<IChatServerService>())
 			{
-				containerRegistry.RegisterSingleton(typeof(IChatServerService), ServiceLoader.LoadService(typeof(IChatServerService)));
+				containerRegistry.Register(typeof(IChatServerService), ServiceLoader.LoadService(typeof(IChatServerService)));
 			}
 
 			if (!containerRegistry.IsRegistered<IProxyServerService>())
